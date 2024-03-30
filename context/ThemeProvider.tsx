@@ -2,12 +2,12 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-interface ThemeProviderType {
+interface ThemeContextType {
 	mode: string;
 	setMode: (mode: string) => void;
 }
 
-const ThemeContext = createContext<ThemeProviderType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const [mode, setMode] = useState('');
@@ -29,6 +29,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		handleThemeChange();
 	}, [mode]);
+
+	console.log('MODE, ', mode);
 
 	return (
 		<ThemeContext.Provider value={{ mode, setMode }}>
