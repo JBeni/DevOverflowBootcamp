@@ -13,7 +13,7 @@ export async function getUserById(params: any) {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
