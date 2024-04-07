@@ -19,7 +19,7 @@ export async function getUserById(params: any) {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -32,7 +32,7 @@ export async function createUser(userData: CreateUserParams) {
 
     return newUser;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -49,7 +49,7 @@ export async function updateUser(params: UpdateUserParams) {
 
     revalidatePath(path);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -81,7 +81,7 @@ export async function deleteUser(params: DeleteUserParams) {
 
     return deletedUser;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -106,7 +106,7 @@ export async function getAllUsers(params: GetAllUsersParams) {
 
     return { users };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -141,7 +141,7 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
 
     revalidatePath(path)
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -176,7 +176,7 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
 
     return { questions: savedQuestions };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -202,7 +202,7 @@ export async function getUserInfo(params: GetUserByIdParams) {
       totalAnswers
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -222,7 +222,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
 
     return { totalQuestions, questions: userQuestions };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
@@ -242,7 +242,7 @@ export async function getUserAnswers(params: GetUserStatsParams) {
 
     return { totalAnswers, answers: userAnswers };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 }
