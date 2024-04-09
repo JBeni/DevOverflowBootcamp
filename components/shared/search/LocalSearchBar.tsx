@@ -2,8 +2,8 @@
 
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { formUrlQuery, removeKeysFromQuery } from '@/lib/utils';
 
 interface CustomInputProps {
@@ -26,6 +26,7 @@ const LocalSearchbar = ({
 	const searchParams = useSearchParams();
 
 	const query = searchParams.get('q');
+
 	const [search, setSearch] = useState(query || '');
 
 	useEffect(() => {
@@ -39,6 +40,7 @@ const LocalSearchbar = ({
 
 				router.push(newUrl, { scroll: false });
 			} else {
+				console.log(route, pathname);
 				if (pathname === route) {
 					const newUrl = removeKeysFromQuery({
 						params: searchParams.toString(),
@@ -72,7 +74,7 @@ const LocalSearchbar = ({
 				placeholder={placeholder}
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
-				className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+				className="paragraph-regular no-focus placeholder text-dark400_light700 border-none bg-transparent shadow-none outline-none"
 			/>
 
 			{iconPosition === 'right' && (
