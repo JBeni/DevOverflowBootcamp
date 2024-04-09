@@ -1,5 +1,6 @@
 import Filter from '@/components/shared/Filter';
 import NoResult from '@/components/shared/NoResult';
+import Pagination from '@/components/shared/Pagination';
 import LocalSearchbar from '@/components/shared/search/LocalSearchBar';
 import { TagFilters } from '@/constants/filters';
 import { getAllTags } from '@/lib/actions/tag.action';
@@ -10,12 +11,12 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
 	const result = await getAllTags({
 		searchQuery: searchParams.q,
 		filter: searchParams.filter,
+		page: searchParams.page ? +searchParams.page : 1,
 	});
 
 	return (
 		<>
 			<h1 className="h1-bold text-dark100_light900">All Tags</h1>
-
 			<div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
 				<LocalSearchbar
 					route="/tags"
@@ -30,10 +31,9 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
 					otherClasses="min-h-[56px] sm:min-w-[170px]"
 				/>
 			</div>
-
 			<section className="mt-12 flex flex-wrap gap-4">
 				{result.tags.length > 0 ? (
-					result.tags.map((tag) => (
+					result.tags.map((tag: any) => (
 						<Link
 							href={`/tags/${tag._id}`}
 							key={tag._id}
@@ -64,6 +64,12 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
 					/>
 				)}
 			</section>
+			<div className="mt-10">
+				<Pagination
+					pageNumber={searchParams?.page ? +searchParams.page : 1}
+					isNext={result.isNext}
+				/>
+			</div>{' '}
 		</>
 	);
 };
